@@ -9,15 +9,14 @@
             type="br.com.mvclopes.mygists.model.Gist" />
     </data>
 
-    <!-- TODO adicionar viewModel para apresentar valores no cardView -->
-
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         app:cardCornerRadius="10dp"
-        android:backgroundTint="#414143">
+        android:backgroundTint="#414143"
+        tools:showIn="@layout/fragment_gist_list">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -29,6 +28,7 @@
                     android:id="@+id/photo"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
+                    android:background="@drawable/circle"
                     app:srcCompat="@drawable/icon_user"
                     tools:srcCompat="@drawable/icon_user" />
 
@@ -40,6 +40,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
                     android:layout_toEndOf="@+id/photo"
+                    android:layout_toStartOf="@id/icon_star"
                     android:text="@{gist.name}"
                     android:textColor="@color/white"
                     tools:text="mvclopes" />
@@ -64,7 +65,7 @@
                     android:layout_height="30dp"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-                    app:srcCompat="@android:drawable/btn_star_big_on" />
+                    app:srcCompat="@drawable/ic_star" />
 
             </RelativeLayout>
 

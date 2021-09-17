@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.lifecycle.Observer
 import br.com.mvclopes.mygists.databinding.FragmentGistListBinding
 
 class GistListFragment : Fragment() {
@@ -22,9 +22,16 @@ class GistListFragment : Fragment() {
         binding = FragmentGistListBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
+        Log.i("Fragment", "${viewModel.listGists} - mockList: ${viewModel.listGists.value}")
 
-        binding.recyclerGists.adapter = GistListAdapter(viewModel.listGists)
-        binding.recyclerGists.layoutManager = LinearLayoutManager(context)
+//        binding.recyclerGists.adapter = GistListAdapter(viewModel.listGists)
+        val adapter = GistListAdapter()
+        binding.recyclerGists.adapter = adapter
+
+        // Observer para atualização dos itens do RecyclerView
+        viewModel.listGists.observe(viewLifecycleOwner, Observer {
+            it?.let { adapter.submitList(it) }
+        })
 
         return binding.root
     }

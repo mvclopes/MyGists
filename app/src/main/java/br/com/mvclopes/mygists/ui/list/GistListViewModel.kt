@@ -1,5 +1,6 @@
 package br.com.mvclopes.mygists.ui.list
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -15,12 +16,18 @@ class GistListViewModel: ViewModel() {
 
     init {
         //Dados fakes pra testar recycler view. Removê-los depois
-        _listGists.value = mutableListOf(
-            Gist("1","mvclopes", "photo 01", true, "Kotlin"),
-            Gist("2","joaozinho", "photo 02", false, "Java"),
-            Gist("3","fulano", "photo 03", true, "Python")
-        )
+        mockList()
 
     }
+
+    private fun mockList() {
+        _listGists.value = mutableListOf(
+            Gist("1", "mvclopes", "photo 01", true, "Kotlin"),
+            Gist("2", "joaozinho", "photo 02", false, "Java"),
+            Gist("3", "fulano", "photo 03", true, "Python")
+        )
+        Log.i("ViewModel", "$listGists - mockList: ${_listGists.value}")
+    }
+
 
 }
