@@ -16,9 +16,9 @@ class GistListViewModel: ViewModel() {
     init {
         //Dados fakes pra testar recycler view. Removê-los depois
         _listGists.value = mutableListOf(
-            Gist("mvclopes", "photo 01", true, "Kotlin"),
-            Gist("joaozinho", "photo 02", false, "Java"),
-            Gist("fulano", "photo 03", true, "Python")
+            Gist("1","mvclopes", "photo 01", true, "Kotlin"),
+            Gist("2","joaozinho", "photo 02", false, "Java"),
+            Gist("3","fulano", "photo 03", true, "Python")
         )
 
     }

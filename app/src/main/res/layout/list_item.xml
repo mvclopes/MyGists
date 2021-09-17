@@ -5,8 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
-            name="viewModel"
-            type="br.com.mvclopes.mygists.ui.list.GistListViewModel" />
+            name="gist"
+            type="br.com.mvclopes.mygists.model.Gist" />
     </data>
 
     <!-- TODO adicionar viewModel para apresentar valores no cardView -->
@@ -40,8 +40,8 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
                     android:layout_toEndOf="@+id/photo"
+                    android:text="@{gist.name}"
                     android:textColor="@color/white"
-                    android:text="@{String.valueOf(viewModel.listGists.get(0))}"
                     tools:text="mvclopes" />
 
                 <!-- Nome do usuário -->
@@ -53,7 +53,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
                     android:layout_below="@id/txt_name_owner"
-                    android:text="@{String.valueOf(viewModel.listGists.get(3))}"
+                    android:text="@{gist.gistType}"
                     tools:text="Kotlin"
                     android:textColor="@color/white"/>
 
