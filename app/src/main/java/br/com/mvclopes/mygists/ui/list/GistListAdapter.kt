@@ -22,7 +22,7 @@ class GistListAdapter: ListAdapter<Gist, GistListViewHolder>(DiffCallback()) {
 
 class DiffCallback: DiffUtil.ItemCallback<Gist>(){
     override fun areItemsTheSame(oldItem: Gist, newItem: Gist): Boolean {
-        return oldItem.nodeId == newItem.nodeId
+        return oldItem.gist == newItem.gist
     }
 
     override fun areContentsTheSame(oldItem: Gist, newItem: Gist): Boolean {
@@ -35,7 +35,7 @@ class GistListViewHolder private constructor(private val binding: ListItemBindin
     :RecyclerView.ViewHolder(binding.root) {
 
     fun bind(gist: Gist){
-        binding.gist = gist
+        binding.gists = gist
         binding.executePendingBindings()
     }
 

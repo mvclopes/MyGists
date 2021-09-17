@@ -1,10 +1,7 @@
 package br.com.mvclopes.mygists.model
 
-data class Gist(
-    val nodeId: String,
-    val name: String,
-    val photoOwner: String,
-    val starred: Boolean,
-    val gistType: String
-) {
-}
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
+data class Gist(val gist: ArrayList<GistItem>): Parcelable

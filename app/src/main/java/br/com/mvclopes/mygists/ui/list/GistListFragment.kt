@@ -22,13 +22,11 @@ class GistListFragment : Fragment() {
         binding = FragmentGistListBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
-        Log.i("Fragment", "${viewModel.listGists} - mockList: ${viewModel.listGists.value}")
 
-//        binding.recyclerGists.adapter = GistListAdapter(viewModel.listGists)
         val adapter = GistListAdapter()
         binding.recyclerGists.adapter = adapter
 
-        // Observer para atualização dos itens do RecyclerView
+//         Observer para atualização dos itens do RecyclerView
         viewModel.listGists.observe(viewLifecycleOwner, Observer {
             it?.let { adapter.submitList(it) }
         })

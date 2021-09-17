@@ -4,7 +4,10 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import br.com.mvclopes.mygists.model.Gist
+import br.com.mvclopes.mygists.network.WebService
+import kotlinx.coroutines.launch
 
 class GistListViewModel: ViewModel() {
 
@@ -15,18 +18,22 @@ class GistListViewModel: ViewModel() {
     val listGists: LiveData<MutableList<Gist>> get() = _listGists
 
     init {
-        //Dados fakes pra testar recycler view. Removê-los depois
-        mockList()
-
+        //TODO implementar camada de Repositório, de modo que só ela tenha acesso a API
+        getPublicGists()
     }
 
-    private fun mockList() {
-        _listGists.value = mutableListOf(
-            Gist("1", "mvclopes", "photo 01", true, "Kotlin"),
-            Gist("2", "joaozinho", "photo 02", false, "Java"),
-            Gist("3", "fulano", "photo 03", true, "Python")
-        )
-        Log.i("ViewModel", "$listGists - mockList: ${_listGists.value}")
+    private fun getPublicGists(){
+        viewModelScope.launch {
+            try {
+                val response = WebService.network.getPublicGists()
+                _response.value = response.toString()
+                Log.i("Webservice Success", "response: $response")
+            } catch (e: Exception) {
+                e.printStackTrace()
+                _response.value = e.message
+                Log.i("Webservice Failure", "response: ${e.message}")
+            }
+        }
     }
 
 

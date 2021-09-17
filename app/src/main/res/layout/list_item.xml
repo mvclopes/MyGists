@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
-            name="gist"
+            name="gists"
             type="br.com.mvclopes.mygists.model.Gist" />
     </data>
 
@@ -41,7 +41,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_toEndOf="@+id/photo"
                     android:layout_toStartOf="@id/icon_star"
-                    android:text="@{gist.name}"
+                    android:text="@{String.valueOf(gists.gist[0].owner.login)}"
                     android:textColor="@color/white"
                     tools:text="mvclopes" />
 
@@ -54,7 +54,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
                     android:layout_below="@id/txt_name_owner"
-                    android:text="@{gist.gistType}"
+                    android:text="@{String.valueOf(gists.gist[0].files.file.type)}"
                     tools:text="Kotlin"
                     android:textColor="@color/white"/>
 
