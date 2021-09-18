@@ -6,7 +6,7 @@
     <data>
         <variable
             name="gists"
-            type="br.com.mvclopes.mygists.model.Gist" />
+            type="br.com.mvclopes.mygists.model.GistItem" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -24,12 +24,13 @@
                 android:padding="16dp">
 
                 <!-- Foto do usuário -->
-                <ImageView
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/photo"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:background="@drawable/circle"
-                    app:srcCompat="@drawable/icon_user"
+                    app:civ_border_color="#FFFFFF"
+                    app:civ_border_width="4dp"
+                    app:imgUrl="@{gists.owner.avatar_url}"
                     tools:srcCompat="@drawable/icon_user" />
 
                 <!-- Nome do usuário -->
@@ -39,24 +40,24 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
-                    android:layout_toEndOf="@+id/photo"
                     android:layout_toStartOf="@id/icon_star"
-                    android:text="@{String.valueOf(gists.gist[0].owner.login)}"
+                    android:layout_toEndOf="@+id/photo"
+                    app:nameOwnerGist="@{gists}"
                     android:textColor="@color/white"
                     tools:text="mvclopes" />
 
-                <!-- Nome do usuário -->
+                <!-- Tipo do Gist -->
                 <TextView
                     android:id="@+id/txt_type_gist"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toEndOf="@+id/photo"
+                    android:layout_below="@id/txt_name_owner"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
-                    android:layout_below="@id/txt_name_owner"
-                    android:text="@{String.valueOf(gists.gist[0].files.file.type)}"
-                    tools:text="Kotlin"
-                    android:textColor="@color/white"/>
+                    android:layout_toEndOf="@+id/photo"
+                    android:textColor="@color/white"
+                    app:typeGist="@{gists}"
+                    tools:text="Kotlin" />
 
                 <!-- Ícone de favoritar -->
                 <ImageView

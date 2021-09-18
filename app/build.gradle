@@ -51,13 +51,19 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
-    // Navigation
-    implementation "androidx.navigation:navigation-fragment-ktx:$version_navigation"
-    implementation "androidx.navigation:navigation-ui-ktx:$version_navigation"
+    //Circle Image View
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 
     // Glide
     implementation 'com.github.bumptech.glide:glide:4.12.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
+
+    // Navigation
+    implementation "androidx.navigation:navigation-fragment-ktx:$version_navigation"
+    implementation "androidx.navigation:navigation-ui-ktx:$version_navigation"
+
+    //OkHttp
+    implementation("com.squareup.okhttp3:logging-interceptor:4.9.1")
 
     // Retrofit 2 and Coroutines Support
     implementation "com.squareup.retrofit2:retrofit:2.9.0"
@@ -76,4 +82,5 @@ dependencies {
 
     // RecyclerView
     implementation "androidx.recyclerview:recyclerview:$version_recyclerview"
+
 }

@@ -5,9 +5,7 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class File(
-    val filename: String,
-    val language: String,
-    val raw_url: String,
-    val size: Int,
-    val type: String
+//    val filename: String = "",
+    val language: String = "",
+    val type: String = "application/json"
 ) : Parcelable

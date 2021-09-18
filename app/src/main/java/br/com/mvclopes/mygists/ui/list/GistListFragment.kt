@@ -27,9 +27,10 @@ class GistListFragment : Fragment() {
         binding.recyclerGists.adapter = adapter
 
 //         Observer para atualização dos itens do RecyclerView
-        viewModel.listGists.observe(viewLifecycleOwner, Observer {
+        viewModel.gist.observe(viewLifecycleOwner, Observer {
             it?.let { adapter.submitList(it) }
         })
+
 
         return binding.root
     }
