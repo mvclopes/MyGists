@@ -5,9 +5,8 @@ import androidx.room.*
 import br.com.mvclopes.mygists.model.GistItem
 
 @Database(entities = [GistItem::class], version = 1, exportSchema = false)
-@TypeConverters(Converters::class)
 abstract class GistDatabase: RoomDatabase() {
-    abstract val gistDao: DatabaseDao
+    abstract fun gistDao(): DatabaseDao
 }
 
 private lateinit var INSTANCE: GistDatabase
@@ -19,8 +18,11 @@ fun getDataBase(context: Context): GistDatabase{
                 context.applicationContext,
                 GistDatabase::class.java,
                 "gists_db"
-            ).build()
+            )
+                .fallbackToDestructiveMigration()
+                .build()
         }
     }
     return INSTANCE
 }
+

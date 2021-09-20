@@ -1,26 +1,28 @@
 package br.com.mvclopes.mygists.ui.list
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import br.com.mvclopes.mygists.databinding.FragmentGistListBinding
 
 class GistListFragment : Fragment() {
 
     private lateinit var binding: FragmentGistListBinding
-    private val viewModel: GistListViewModel by viewModels()
+    private val viewModel: GistListViewModel by lazy {
+        val activity = requireNotNull(this.activity)
+        ViewModelProvider(this, GistListViewModel.Factory(activity.application)).get(GistListViewModel::class.java)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         binding = FragmentGistListBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
         binding.viewModel = viewModel

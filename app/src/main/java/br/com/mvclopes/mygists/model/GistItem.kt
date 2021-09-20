@@ -1,18 +1,27 @@
 package br.com.mvclopes.mygists.model
 
 import android.os.Parcelable
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import androidx.room.*
 import kotlinx.parcelize.Parcelize
 
 @Entity(tableName = "tb_public_gists")
 @Parcelize
 data class GistItem(
-    //TODO adicionar typeConverters a Files e Owner, pois a ROOM não permite referências de objetos entre entidades
     @PrimaryKey
-    val id: String,
-    val description: String,
-    val files: MutableList<File>,
-    val owner: Owner,
+    var id: String = "",
+    @Ignore
+    val description: String = "",
+    @Ignore
+    @Embedded
+    val files: List<File> = listOf(File()),
+    @Ignore
+    @Embedded
+    val owner: Owner = Owner(),
+    @Ignore
     var isStarred: Boolean = false
-) : Parcelable
+) : Parcelable{
+
+    fun set_Id(id: String){
+        this.id = id
+    }
+}

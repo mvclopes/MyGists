@@ -5,7 +5,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class File(
-    val filename: String,
-    val language: String,
-    val type: String
+    val filename: String = "",
+    val language: String = "",
+    val type: String = ""
 ) : Parcelable
