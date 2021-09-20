@@ -73,7 +73,6 @@ dependencies {
     // Room and Lifecycle dependencies
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
-    implementation "androidx.lifecycle:lifecycle-extensions:$version_lifecycle_extensions"
 
     // Moshi
     implementation "com.squareup.moshi:moshi:$version_moshi"

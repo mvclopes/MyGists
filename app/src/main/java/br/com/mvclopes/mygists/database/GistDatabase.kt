@@ -1,12 +1,11 @@
 package br.com.mvclopes.mygists.database
 
 import android.content.Context
-import androidx.room.Database
-import androidx.room.Room
-import androidx.room.RoomDatabase
-import br.com.mvclopes.mygists.model.Gist
+import androidx.room.*
+import br.com.mvclopes.mygists.model.GistItem
 
-@Database(entities = [Gist::class], version = 1, exportSchema = false)
+@Database(entities = [GistItem::class], version = 1, exportSchema = false)
+@TypeConverters(Converters::class)
 abstract class GistDatabase: RoomDatabase() {
     abstract val gistDao: DatabaseDao
 }

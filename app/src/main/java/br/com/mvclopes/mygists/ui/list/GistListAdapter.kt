@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import br.com.mvclopes.mygists.databinding.ListItemBinding
 import br.com.mvclopes.mygists.model.GistItem
 
-class GistListAdapter: ListAdapter<GistItem, GistListViewHolder>(DiffCallback()) {
+class GistListAdapter(private val clickListener: GistListener): ListAdapter<GistItem, GistListViewHolder>(DiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GistListViewHolder {
         return GistListViewHolder.from(parent)
@@ -16,8 +16,12 @@ class GistListAdapter: ListAdapter<GistItem, GistListViewHolder>(DiffCallback())
 
     override fun onBindViewHolder(holder: GistListViewHolder, position: Int) {
         val gist = getItem(position) as GistItem
-        holder.bind(gist)
+        holder.bind(clickListener, gist)
     }
+}
+
+class GistListener(val clickListener: (gist: GistItem) -> Unit) {
+    fun onClick(gist: GistItem) = clickListener(gist)
 }
 
 class DiffCallback: DiffUtil.ItemCallback<GistItem>(){
@@ -34,8 +38,9 @@ class DiffCallback: DiffUtil.ItemCallback<GistItem>(){
 class GistListViewHolder private constructor(private val binding: ListItemBinding)
     :RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(gist: GistItem){
+    fun bind(clickListener: GistListener, gist: GistItem){
         binding.gists = gist
+        binding.clickListener = clickListener
         binding.executePendingBindings()
     }
 

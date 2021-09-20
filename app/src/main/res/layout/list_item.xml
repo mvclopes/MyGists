@@ -7,6 +7,9 @@
         <variable
             name="gists"
             type="br.com.mvclopes.mygists.model.GistItem" />
+        <variable
+            name="clickListener"
+            type="br.com.mvclopes.mygists.ui.list.GistListener" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -16,6 +19,7 @@
         android:layout_margin="10dp"
         app:cardCornerRadius="10dp"
         android:backgroundTint="#414143"
+        android:onClick="@{() -> clickListener.onClick(gists)}"
         tools:showIn="@layout/fragment_gist_list">
 
             <RelativeLayout
@@ -30,7 +34,7 @@
                     android:layout_height="60dp"
                     app:civ_border_color="#FFFFFF"
                     app:civ_border_width="4dp"
-                    app:imgUrl="@{gists.owner.avatar_url}"
+                    app:imgUrl="@{gists}"
                     tools:srcCompat="@drawable/icon_user" />
 
                 <!-- Nome do usuário -->
@@ -66,7 +70,7 @@
                     android:layout_height="30dp"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-                    app:srcCompat="@drawable/ic_star" />
+                    app:srcCompat="@drawable/ic_star_border" />
 
             </RelativeLayout>
 

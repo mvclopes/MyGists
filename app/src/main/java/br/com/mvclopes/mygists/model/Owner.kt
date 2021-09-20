@@ -1,7 +1,8 @@
 package br.com.mvclopes.mygists.model
 
 import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
+import br.com.mvclopes.mygists.database.Converters
+import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Owner(
