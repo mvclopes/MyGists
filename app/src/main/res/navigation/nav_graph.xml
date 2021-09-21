@@ -8,7 +8,6 @@
     <fragment
         android:id="@+id/gistListFragment"
         android:name="br.com.mvclopes.mygists.ui.list.GistListFragment"
-        android:label="GistListFragment"
         tools:layout="@layout/fragment_gist_list">
         <action
             android:id="@+id/action_gistListFragment_to_gistDetailFragment"
@@ -17,7 +16,6 @@
     <fragment
         android:id="@+id/gistDetailFragment"
         android:name="br.com.mvclopes.mygists.ui.detail.GistDetailFragment"
-        android:label="GistDetailFragment"
         tools:layout="@layout/fragment_gist_detail">
         <argument
             android:name="gistSelected"

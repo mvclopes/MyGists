@@ -12,7 +12,9 @@ interface DatabaseDao {
     @Insert(onConflict = REPLACE)
     fun insertAll(gists: List<GistItem>)
 
+    @Insert(onConflict = REPLACE)
+    fun insert(gistItem: GistItem)
+
     @Query("SELECT * FROM tb_public_gists")
     fun getAllGists() : LiveData<List<GistItem>>
-
 }

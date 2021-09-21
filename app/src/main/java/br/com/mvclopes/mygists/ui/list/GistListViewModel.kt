@@ -1,6 +1,7 @@
 package br.com.mvclopes.mygists.ui.list
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.*
 import br.com.mvclopes.mygists.database.getDataBase
 import br.com.mvclopes.mygists.model.GistItem
@@ -22,6 +23,7 @@ class GistListViewModel(application: Application): AndroidViewModel(application)
     private fun getPublicGists(){
         viewModelScope.launch {
             _gist.value = repository.refreshGists()
+            Log.i("TAG", "response: \n${_gist.value}")
         }
     }
 
