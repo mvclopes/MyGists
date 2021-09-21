@@ -25,7 +25,6 @@ class GistListFragment : Fragment() {
 
         binding = FragmentGistListBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
-        binding.viewModel = viewModel
 
         val adapter = GistListAdapter(GistListener {
             it?.let {

@@ -4,9 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import br.com.mvclopes.mygists.R
@@ -18,7 +16,8 @@ class GistDetailFragment : Fragment() {
     private val gistArgs by navArgs<GistDetailFragmentArgs>()
 
     private val viewModel: GistDetailViewModel by lazy {
-        ViewModelProvider(this, GistDetailViewModel.Factory(gistArgs.gistSelected)).get(GistDetailViewModel::class.java)
+        val activity = requireNotNull(this.activity)
+        ViewModelProvider(this, GistDetailViewModel.Factory(gistArgs.gistSelected, activity.application)).get(GistDetailViewModel::class.java)
     }
 
     override fun onCreateView(
@@ -28,7 +27,6 @@ class GistDetailFragment : Fragment() {
         binding = FragmentGistDetailBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
-        val isStarred: Boolean = viewModel.gist.value!!.isStarred
 
         binding.iconStar.setOnClickListener {
             viewModel.setStarredGist()

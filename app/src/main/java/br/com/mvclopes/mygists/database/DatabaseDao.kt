@@ -5,6 +5,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy.REPLACE
 import androidx.room.Query
+import androidx.room.Update
 import br.com.mvclopes.mygists.model.GistItem
 @Dao
 interface DatabaseDao {
@@ -12,9 +13,12 @@ interface DatabaseDao {
     @Insert(onConflict = REPLACE)
     fun insertAll(gists: List<GistItem>)
 
-    @Insert(onConflict = REPLACE)
-    fun insert(gistItem: GistItem)
+    @Update(onConflict = REPLACE)
+    fun update(gistItem: GistItem)
 
     @Query("SELECT * FROM tb_public_gists")
     fun getAllGists() : LiveData<List<GistItem>>
+
+//    @Query("SELECT * FROM tb_public_gists WHERE isStarred = 0")
+    fun getStarredGists() : MutableList<GistItem>
 }

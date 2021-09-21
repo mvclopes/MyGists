@@ -9,19 +9,24 @@ import kotlinx.parcelize.Parcelize
 data class GistItem(
     @PrimaryKey
     var id: String = "",
+
     @Ignore
+    @ColumnInfo(name = "description")
     val description: String = "",
+
     @Ignore
     @Embedded
+    @ColumnInfo(name = "files")
     val files: List<File> = listOf(File()),
+
     @Ignore
     @Embedded
+    @ColumnInfo(name = "owner")
     val owner: Owner = Owner(),
+
     @Ignore
+    @ColumnInfo(name = "isStarred")
     var isStarred: Boolean = false
 ) : Parcelable{
 
-    fun set_Id(id: String){
-        this.id = id
-    }
 }
