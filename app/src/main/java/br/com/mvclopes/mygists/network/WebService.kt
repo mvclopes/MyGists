@@ -37,7 +37,7 @@ object WebService {
 }
 
 interface ApiService{
-    @GET("gists/public?per_page=20")
+    @GET("gists/public")
     suspend fun getPublicGists(): String
 }
 
