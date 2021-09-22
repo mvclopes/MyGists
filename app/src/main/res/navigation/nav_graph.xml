@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/gistListFragment">
+
+    <fragment
+        android:id="@+id/gistListFragment"
+        android:name="br.com.mvclopes.mygists.ui.list.GistListFragment"
+        tools:layout="@layout/fragment_gist_list">
+        <action
+            android:id="@+id/action_gistListFragment_to_gistDetailFragment"
+            app:destination="@id/gistDetailFragment" />
+        <action
+            android:id="@+id/action_gistListFragment_to_gistStarredFragment"
+            app:destination="@id/gistStarredFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/gistDetailFragment"
+        android:name="br.com.mvclopes.mygists.ui.detail.GistDetailFragment"
+        tools:layout="@layout/fragment_gist_detail">
+        <argument
+            android:name="gistSelected"
+            app:argType="br.com.mvclopes.mygists.model.GistItem" />
+    </fragment>
+    <fragment
+        android:id="@+id/gistStarredFragment"
+        android:name="br.com.mvclopes.mygists.ui.starred.GistStarredFragment"
+        tools:layout="@layout/fragment_gist_starred">
+        <action
+            android:id="@+id/action_gistStarredFragment_to_gistDetailFragment"
+            app:destination="@id/gistDetailFragment" />
+    </fragment>
+</navigation>

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="br.com.mvclopes.mygists.ui.detail.GistDetailViewModel" />
+    </data>
+
+    <!--    <ScrollView-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent">-->
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#f6f7fb"
+        tools:context=".ui.list.GistListFragment">
+
+        <!-- Cabeçalho com informações do Gist -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:background="#2c2c2e"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <!-- Label da tela de detalhes -->
+            <TextView
+                android:id="@+id/label_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:text="Detalhes Gist"
+                android:textColor="@color/white"
+                android:textSize="36sp"
+                app:layout_constraintBottom_toTopOf="@id/photo"
+                app:layout_constraintStart_toStartOf="@id/photo" />
+
+            <!-- Foto do usuário -->
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/photo"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginBottom="24dp"
+                app:civ_border_color="#FFFFFF"
+                app:civ_border_width="2dp"
+                app:imgUrl="@{viewModel.gist}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:srcCompat="@drawable/icon_user" />
+
+            <!-- Ícone para favoritar o gist -->
+            <ImageView
+                android:id="@+id/icon_star"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintBottom_toBottomOf="@id/photo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:iconStar="@{viewModel.gist}"
+                tools:srcCompat="@drawable/ic_star_border"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/header"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@color/white"
+            android:layout_marginTop="16dp">
+
+            <!-- Label do Nome do usuário -->
+            <TextView
+                android:id="@+id/label_name_owner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nome do usuário"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="16dp" />
+
+            <!-- Nome do usuário -->
+            <TextView
+                android:id="@+id/txt_name_owner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/label_name_owner"
+                app:layout_constraintStart_toStartOf="@id/label_name_owner"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:nameOwnerGist="@{viewModel.gist}"
+                tools:text="mvclopes" />
+
+            <!-- Label do tipo do Gist -->
+            <TextView
+                android:id="@+id/label_type_gist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tipo do Gist"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintTop_toBottomOf="@id/txt_name_owner"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="16dp" />
+
+            <!-- Tipo do Gist -->
+            <TextView
+                android:id="@+id/txt_type_gist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@id/label_type_gist"
+                app:layout_constraintTop_toBottomOf="@id/label_type_gist"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:typeGist="@{viewModel.gist}"
+                tools:text="application/json" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <!--    </ScrollView>-->
+</layout>

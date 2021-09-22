@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="gists"
+            type="br.com.mvclopes.mygists.model.GistItem" />
+        <variable
+            name="clickListener"
+            type="br.com.mvclopes.mygists.ui.list.GistListener" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        app:cardCornerRadius="10dp"
+        android:backgroundTint="#414143"
+        android:onClick="@{() -> clickListener.onClick(gists)}"
+        tools:showIn="@layout/fragment_gist_list">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="16dp">
+
+                <!-- Foto do usuário -->
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/photo"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    app:civ_border_color="#FFFFFF"
+                    app:civ_border_width="4dp"
+                    app:imgUrl="@{gists}"
+                    tools:srcCompat="@drawable/icon_user" />
+
+                <!-- Nome do usuário -->
+                <TextView
+                    android:id="@+id/txt_name_owner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_toStartOf="@id/icon_star"
+                    android:layout_toEndOf="@+id/photo"
+                    app:nameOwnerGist="@{gists}"
+                    android:textColor="@color/white"
+                    tools:text="mvclopes" />
+
+                <!-- Tipo do Gist -->
+                <TextView
+                    android:id="@+id/txt_type_gist"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/txt_name_owner"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_toEndOf="@+id/photo"
+                    android:textColor="@color/white"
+                    app:typeGist="@{gists}"
+                    tools:text="Kotlin" />
+
+                <!-- Ícone de favoritar -->
+                <ImageView
+                    android:id="@+id/icon_star"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    app:iconStar="@{gists}" />
+
+            </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</layout>
