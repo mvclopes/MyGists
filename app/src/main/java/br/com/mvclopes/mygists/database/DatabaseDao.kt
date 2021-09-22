@@ -19,6 +19,6 @@ interface DatabaseDao {
     @Query("SELECT * FROM tb_public_gists")
     fun getAllGists() : LiveData<List<GistItem>>
 
-//    @Query("SELECT * FROM tb_public_gists WHERE isStarred = 0")
+    @Query("SELECT * FROM tb_public_gists WHERE isStarred = 1")
     fun getStarredGists() : MutableList<GistItem>
 }

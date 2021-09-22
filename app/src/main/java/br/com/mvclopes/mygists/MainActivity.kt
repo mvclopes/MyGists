@@ -7,6 +7,8 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
@@ -25,6 +27,9 @@ class MainActivity : AppCompatActivity() {
         navController = navHostFragment.findNavController()
 
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        val bottomBar = findViewById<BottomNavigationView>(R.id.bottombar)
+
+        bottomBar.setupWithNavController(navController)
 
         setSupportActionBar(toolbar)
         setupActionBarWithNavController(navController)

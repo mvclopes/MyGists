@@ -1,10 +1,7 @@
 package br.com.mvclopes.mygists.ui.starred
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import br.com.mvclopes.mygists.database.getDataBase
 import br.com.mvclopes.mygists.model.GistItem
 import br.com.mvclopes.mygists.repository.GistRepository
@@ -19,15 +16,22 @@ class GistStarredViewModel(application: Application): AndroidViewModel(applicati
     val gistStarred: LiveData<MutableList<GistItem>> get() = _gistStarred
 
     init {
-        //TODO inicializar _gistStarred associando a um método do objeto DAO
-        _gistStarred.value = getStarredGist()
+        getStarredGist()
     }
 
-    private fun getStarredGist(): MutableList<GistItem>{
-        var gists = mutableListOf<GistItem>()
+    private fun getStarredGist(){
         viewModelScope.launch {
-            gists = repository.getStarredGists()
+            _gistStarred.value = repository.getStarredGists()
         }
-        return gists
+    }
+
+    class Factory(val app: Application) : ViewModelProvider.Factory {
+        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+            if (modelClass.isAssignableFrom(GistStarredViewModel::class.java)) {
+                @Suppress("UNCHECKED_CAST")
+                return GistStarredViewModel(app) as T
+            }
+            throw IllegalArgumentException("Unable to construct viewmodel")
+        }
     }
 }

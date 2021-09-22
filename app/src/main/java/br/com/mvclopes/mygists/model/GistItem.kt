@@ -24,8 +24,6 @@ data class GistItem(
     @ColumnInfo(name = "owner")
     val owner: Owner = Owner(),
 
-    @Ignore
-    @ColumnInfo(name = "isStarred")
     var isStarred: Boolean = false
 ) : Parcelable{
 
